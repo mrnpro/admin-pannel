@@ -2,7 +2,7 @@ import 'package:dmin/Constants.dart';
 import 'package:dmin/Screens/Login/form/form.dart';
 import 'package:flutter/material.dart';
 
-import 'componenet/btn.dart';
+import '../../components/btn.dart';
 
 class login extends StatelessWidget {
   login({Key? key}) : super(key: key);
@@ -15,17 +15,21 @@ class login extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         body: Container(
-          padding: EdgeInsets.only(top: 100),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           color: ksecondColor,
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.only(
+              top: 100,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                  padding: const EdgeInsets.only(
+                    top: 30,
+                  ),
                   height: 400,
                   width: MediaQuery.of(context).size.width / 1.1,
                   decoration: BoxDecoration(
@@ -35,18 +39,18 @@ class login extends StatelessWidget {
                       key: _theresult,
                       child: Column(
                         children: [
-                          Text("Login Please", style: textheading1),
-                          SizedBox(
+                          const Text("Login Please", style: textheading1),
+                          const SizedBox(
                             height: 8,
                           ),
                           Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 14, vertical: 12),
                             child: TextFormField(
-                              style: TextStyle(color: kthirdcolor),
+                              style: const TextStyle(color: kthirdcolor),
                               controller: email,
                               keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 fillColor: ksecondColor,
                                 filled: true,
 
@@ -67,16 +71,16 @@ class login extends StatelessWidget {
                               },
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 14, vertical: 12),
                             child: TextFormField(
                               obscureText: true,
                               autofocus: false,
-                              style: TextStyle(color: kthirdcolor),
+                              style: const TextStyle(color: kthirdcolor),
                               controller: password,
                               keyboardType: TextInputType.visiblePassword,
                               decoration: InputDecoration(
@@ -100,7 +104,7 @@ class login extends StatelessWidget {
                               },
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           InkWell(
@@ -111,16 +115,14 @@ class login extends StatelessWidget {
                                       '/second', (route) => false)
                                 }
                             },
-                            child: btn(),
+                            child: btn(
+                              btntxt: "Login",
+                            ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          InkWell(
-                              onTap: () {
-                                //do smthing
-                              },
-                              child: kforgetpass)
+                          kforgetpass
                         ],
                       )),
                 )

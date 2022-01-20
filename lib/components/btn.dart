@@ -1,8 +1,13 @@
-import 'package:dmin/Constants.dart';
 import 'package:flutter/material.dart';
 
+import 'package:dmin/Constants.dart';
+
 class btn extends StatelessWidget {
-  const btn({Key? key}) : super(key: key);
+  var btntxt = "null";
+  btn({
+    Key? key,
+    required this.btntxt,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +19,8 @@ class btn extends StatelessWidget {
           color: kthirdcolor, borderRadius: BorderRadius.circular(2)),
       child: Center(
           child: Text(
-        "Login",
-        style: textheading1,
+        btntxt,
+        style: textheading2,
       )),
     );
   }

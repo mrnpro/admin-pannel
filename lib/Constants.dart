@@ -7,10 +7,12 @@ const kappbartxt = Text(
   "Welcome Admin",
   style: textheading1,
 );
-const kforgetpass = Text("forget password?",
-    style: TextStyle(
-      color: kthirdcolor,
-    ));
+Widget kforgetpass = TextButton(
+    onPressed: () {},
+    child: Text("forget password?",
+        style: TextStyle(
+          color: kthirdcolor,
+        )));
 const kurlogo = Text(
   "Your logo here",
   style: textheading2,

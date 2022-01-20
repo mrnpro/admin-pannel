@@ -1,5 +1,6 @@
 import 'package:dmin/Constants.dart';
 import 'package:dmin/Screens/Home/components/urlogohere.dart';
+
 import 'package:dmin/components/cardbtn.dart';
 import 'package:flutter/material.dart';
 
@@ -28,9 +29,7 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   InkWell(
-                    onTap: () => {
-                      //do smthing
-                    },
+                    onTap: () => {Navigator.pushNamed(context, '/add')},
                     child: cardbtn(
                       txt: "Add",
                       icon: Icons.add,
@@ -62,7 +61,9 @@ class Home extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () => {
-                      //do smthing
+                      Navigator.of(context)
+                          .pushNamedAndRemoveUntil('/', (route) => false)
+                      //do another db thing
                     },
                     child: cardbtn(
                       txt: "Logout",
