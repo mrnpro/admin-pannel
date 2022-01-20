@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
+    theme: ThemeData(fontFamily: 'myfont'),
     initialRoute: '/',
     routes: {
       // When navigating to the "/" route, build the FirstScreen widget.

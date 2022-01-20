@@ -15,10 +15,8 @@ const kurlogo = Text(
   "Your logo here",
   style: textheading2,
 );
-const textheading1 = TextStyle(
-  fontSize: 30,
-  color: Colors.white,
-);
+const textheading1 =
+    TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold);
 const textheading2 = TextStyle(
   fontSize: 20,
   color: Colors.white,
