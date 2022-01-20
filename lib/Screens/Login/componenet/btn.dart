@@ -7,10 +7,11 @@ class btn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      margin: EdgeInsets.symmetric(horizontal: 18),
+      height: 40,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-          color: kthirdcolor, borderRadius: BorderRadius.circular(30)),
+          color: kthirdcolor, borderRadius: BorderRadius.circular(2)),
       child: Center(
           child: Text(
         "Login",

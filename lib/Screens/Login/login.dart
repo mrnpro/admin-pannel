@@ -34,6 +34,9 @@ class login extends StatelessWidget {
                     child: Column(
                       children: [
                         Text("Login Please", style: textheading1),
+                        SizedBox(
+                          height: 8,
+                        ),
                         Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: 14, vertical: 12),
@@ -95,6 +98,9 @@ class login extends StatelessWidget {
                             },
                           ),
                         ),
+                        SizedBox(
+                          height: 8,
+                        ),
                         InkWell(
                           onTap: () async => {
                             if (_theresult.currentState!.validate())
@@ -102,6 +108,14 @@ class login extends StatelessWidget {
                           },
                           child: btn(),
                         ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                            onTap: () {
+                              //do smthing
+                            },
+                            child: kforgetpass)
                       ],
                     )),
               )
