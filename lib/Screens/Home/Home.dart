@@ -17,11 +17,11 @@ class Home extends StatelessWidget {
         backgroundColor: kPrimaryColor,
       ),
       body: Container(
-        padding: const EdgeInsets.all(20),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         color: ksecondColor,
         child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
