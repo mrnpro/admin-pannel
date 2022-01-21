@@ -83,7 +83,7 @@ class login extends StatelessWidget {
                               style: const TextStyle(color: kthirdcolor),
                               controller: password,
                               keyboardType: TextInputType.visiblePassword,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 fillColor: ksecondColor,
                                 filled: true,
 
@@ -99,8 +99,9 @@ class login extends StatelessWidget {
                                   return 'Please enter your password';
                                 }
 
-                                if (value.length < 8)
+                                if (value.length < 8) {
                                   return "please enter secured password";
+                                }
                               },
                             ),
                           ),

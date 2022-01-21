@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:dmin/Constants.dart';
 import 'package:dmin/components/btn.dart';
 
 import 'package:dmin/components/cardbtn.dart';
+import 'package:dmin/controllers/controler.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class add extends StatelessWidget {
   add({Key? key}) : super(key: key);
@@ -24,31 +29,72 @@ class add extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         color: ksecondColor,
         child: ListView(
+          physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.all(12),
           children: [
-            InkWell(
-              onTap: () => {
-                //do smthing
-              },
-              child: const cardbtn(
-                txt: "Addphoto",
-                icon: Icons.photo,
-              ),
+            Consumer<controller>(
+              builder: (context, controller, child) => controller.image == null
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () => {
+                              //do smthing
+                              controller.add_pic_camera()
+                            },
+                            child: const cardbtn(
+                              txt: "Camera",
+                              icon: Icons.camera,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () => {
+                              //do smthing
+                              controller.add_pic_gal()
+                            },
+                            child: const cardbtn(
+                              txt: "Gallery",
+                              icon: Icons.photo,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : InkWell(
+                      onTap: () => {
+                        if (controller.isgalary)
+                          {controller.add_pic_gal()}
+                        else
+                          {controller.add_pic_camera()}
+                      },
+                      child: Container(
+                        height: 300,
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                          image: new DecorationImage(
+                              image: FileImage(File(controller.image!.path)),
+                              fit: BoxFit.cover),
+                        ),
+                      ),
+                    ),
             ),
             Form(
                 key: _theresult,
                 child: Column(
                   children: [
                     const SizedBox(
-                      height: 8,
+                      height: 20,
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 12),
+                        horizontal: 14,
+                      ),
                       child: TextFormField(
                         style: const TextStyle(color: kthirdcolor),
                         controller: Title,
-                        keyboardType: TextInputType.emailAddress,
+                        keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           fillColor: kPrimaryColor,
                           filled: true,
@@ -66,8 +112,29 @@ class add extends StatelessWidget {
                         },
                       ),
                     ),
-                    const SizedBox(
-                      height: 2,
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 14, vertical: 12),
+                      child: TextFormField(
+                        style: const TextStyle(color: kthirdcolor),
+                        controller: price,
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          fillColor: kPrimaryColor,
+                          filled: true,
+
+                          hintText: " price ",
+                          hintStyle: TextStyle(color: Colors.white),
+                          // If  you are using latest version of flutter then lable text and hint text shown like this
+                          // if you r using flutter less then 1.20.* then maybe this is not working properly
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter price';
+                          }
+                        },
+                      ),
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(
@@ -95,9 +162,6 @@ class add extends StatelessWidget {
                           }
                         },
                       ),
-                    ),
-                    const SizedBox(
-                      height: 8,
                     ),
                     InkWell(
                       onTap: () async => {

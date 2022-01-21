@@ -11,18 +11,18 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: kappbartxt,
         ),
         backgroundColor: kPrimaryColor,
       ),
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         color: ksecondColor,
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
               Row(
@@ -30,7 +30,7 @@ class Home extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () => {Navigator.pushNamed(context, '/add')},
-                    child: cardbtn(
+                    child: const cardbtn(
                       txt: "Add",
                       icon: Icons.add,
                     ),
@@ -38,15 +38,16 @@ class Home extends StatelessWidget {
                   InkWell(
                     onTap: () => {
                       //do smthing
+                      Navigator.pushNamed(context, "/edit")
                     },
-                    child: cardbtn(
+                    child: const cardbtn(
                       txt: "Edit",
                       icon: Icons.edit,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 13),
+              const SizedBox(height: 13),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -54,7 +55,7 @@ class Home extends StatelessWidget {
                     onTap: () => {
                       //do smthing
                     },
-                    child: cardbtn(
+                    child: const cardbtn(
                       txt: "Analytics",
                       icon: Icons.analytics_rounded,
                     ),
@@ -65,17 +66,17 @@ class Home extends StatelessWidget {
                           .pushNamedAndRemoveUntil('/', (route) => false)
                       //do another db thing
                     },
-                    child: cardbtn(
+                    child: const cardbtn(
                       txt: "Logout",
                       icon: Icons.data_usage_rounded,
                     ),
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              urlogohere()
+              const urlogohere()
             ],
           ),
         ),
