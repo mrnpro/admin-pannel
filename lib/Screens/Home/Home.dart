@@ -1,7 +1,10 @@
 import 'package:dmin/Constants.dart';
+import 'package:dmin/Firebase/auth.dart';
+
 import 'package:dmin/Screens/Home/components/urlogohere.dart';
 
 import 'package:dmin/components/cardbtn.dart';
+
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -61,7 +64,8 @@ class Home extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: () => {
+                    onTap: () async => {
+                      await Auth().signout(),
                       Navigator.of(context)
                           .pushNamedAndRemoveUntil('/', (route) => false)
                       //do another db thing

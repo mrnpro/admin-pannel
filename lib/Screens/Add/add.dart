@@ -6,6 +6,7 @@ import 'package:dmin/components/btn.dart';
 import 'package:dmin/components/cardbtn.dart';
 import 'package:dmin/controllers/controler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -36,30 +37,37 @@ class add extends StatelessWidget {
               builder: (context, controller, child) => controller.image == null
                   ? Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          InkWell(
-                            onTap: () => {
-                              //do smthing
-                              controller.add_pic_camera()
-                            },
-                            child: const cardbtn(
-                              txt: "Camera",
-                              icon: Icons.camera,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        physics: BouncingScrollPhysics(),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () => {
+                                //do smthing
+                                controller.add_pic_camera()
+                              },
+                              child: const cardbtn(
+                                txt: "Camera",
+                                icon: Icons.camera,
+                              ),
                             ),
-                          ),
-                          InkWell(
-                            onTap: () => {
-                              //do smthing
-                              controller.add_pic_gal()
-                            },
-                            child: const cardbtn(
-                              txt: "Gallery",
-                              icon: Icons.photo,
+                            const SizedBox(
+                              width: 8,
                             ),
-                          ),
-                        ],
+                            InkWell(
+                              onTap: () => {
+                                //do smthing
+                                controller.add_pic_gal()
+                              },
+                              child: cardbtn(
+                                txt: "Galary",
+                                icon: Icons.photo,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     )
                   : InkWell(
@@ -71,9 +79,10 @@ class add extends StatelessWidget {
                       },
                       child: Container(
                         height: 300,
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        margin: const EdgeInsets.symmetric(horizontal: 16),
                         decoration: BoxDecoration(
-                          image: new DecorationImage(
+                          borderRadius: BorderRadius.circular(3),
+                          image: DecorationImage(
                               image: FileImage(File(controller.image!.path)),
                               fit: BoxFit.cover),
                         ),
@@ -163,17 +172,26 @@ class add extends StatelessWidget {
                         },
                       ),
                     ),
-                    InkWell(
-                      onTap: () async => {
-                        if (_theresult.currentState!.validate())
-                          {
-                            //do things
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                                '/second', (route) => false)
-                          }
-                      },
-                      child: btn(btntxt: "post"),
-                    ),
+                    Consumer<controller>(
+                      builder: (context, controller, child) => InkWell(
+                        onTap: () async => {
+                          if (_theresult.currentState!.validate())
+                            {
+                              EasyLoading.show(),
+                              Future.delayed(Duration(seconds: 4), () {
+                                EasyLoading.dismiss();
+                                EasyLoading.showSuccess("success");
+                                controller.post(
+                                    Title.text, Description.text, price.text);
+                              }),
+                              Navigator.pop(context)
+
+                              //do things
+                            }
+                        },
+                        child: btn(btntxt: "post"),
+                      ),
+                    )
                   ],
                 )),
           ],
