@@ -16,3 +16,5 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ![alt login](https://github.com/mrnpro/admin-pannel/blob/main/login.png)
+![alt home](https://github.com/mrnpro/admin-pannel/blob/main/homee.png)
+![alt add](https://github.com/mrnpro/admin-pannel/blob/main/add.png)
